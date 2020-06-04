@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    To make it ScrollView because to make sure the note can be seen when the content is too many-->
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+<!--            For top header-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/backhand_design"
+            android:text="Add Shopping Item"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+<!--            For the Type word and the input -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Type:"
+                    android:layout_margin="10dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:padding="10dp"/>
+
+
+            </RelativeLayout>
+
+<!--            For the Price and it's input-->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:id="@+id/item_type"
+                    android:layout_height="wrap_content"/>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+<!--            For the Price and the input-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Price:"
+                    android:layout_margin="10dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:padding="10dp"/>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:id="@+id/item_amount"
+                    android:layout_height="wrap_content"/>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+<!--            For the note and the input-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Any note:"
+                    android:layout_margin="10dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:padding="10dp"/>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:id="@+id/item_note"
+                    android:layout_height="wrap_content"/>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+<!--            For the button let the user add the item, the id need to be use later-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/backhand2_design"
+            android:text="Add Me"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/white"
+            android:id="@+id/button_save"
+
+            />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>
