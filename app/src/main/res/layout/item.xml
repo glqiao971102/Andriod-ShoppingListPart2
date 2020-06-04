@@ -47,16 +47,15 @@
                 />
 
             <TextView
+                android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Note"
+                android:layout_below="@+id/type"
                 android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:id="@+id/note"
-                android:layout_below= "@+id/type"
-                android:padding="5dp"
-                android:textColor="#3F51B5"
-                />
+                android:padding="10dp"
+                android:text="Note"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#3F51B5" />
 
         </RelativeLayout>
 

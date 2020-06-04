@@ -13,9 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shoppinglist.Model.Data;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,8 +51,9 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseUser mUser = mAuth.getCurrentUser();
         String uId = mUser.getUid();
 
-        mDatabase.keepSynced(true);
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Shopping List").child(uId);
+        mDatabase.keepSynced(true);
 
         recyclerView = findViewById(R.id.recycler_home);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -123,6 +126,69 @@ public class HomeActivity extends AppCompatActivity {
 
             dialog.show();
         }
+
+        protected  void onStart(){
+            super.onStart();
+
+            FirebaseRecyclerAdapter<Data,MyViewHolder>adapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>
+                    (
+
+                            Data.class,
+                            R.layout.item,
+                            MyViewHolder.class,
+                            mDatabase
+
+                    ) {
+                @Override
+                protected void populateViewHolder(MyViewHolder viewHolder, Data model, int position) {
+                    viewHolder.setDate(model.getDate());
+                    viewHolder.setType(model.getType());
+                    viewHolder.setNote(model.getNote());
+                    viewHolder.setAmmount(model.getPrice());
+                }
+            };
+
+            recyclerView.setAdapter(adapter);
+        }
+
+        public static class MyViewHolder extends RecyclerView.ViewHolder{
+            View myview;
+
+
+            public MyViewHolder(View itemView){
+                super(itemView);
+                myview = itemView;
+            }
+
+            public void setType(String type){
+                TextView mType = myview.findViewById(R.id.type);
+                mType.setText(type);
+            }
+
+            public void setNote(String note){
+                TextView mNote = myview.findViewById(R.id.note);
+                mNote.setText(note);
+            }
+
+            public void setDate(String date){
+                TextView mDate = myview.findViewById(R.id.date);
+                mDate.setText(date);
+            }
+
+            public void setAmmount(int ammount){
+                TextView mAmount = myview.findViewById(R.id.amount);
+                String stam = String.valueOf(ammount);
+                mAmount.setText(stam);
+            }
+
+        }
+
+
+
+
+
+
+
 
     }
 

@@ -3,19 +3,18 @@ package com.example.shoppinglist.Model;
 public class Data {
 
     String type;
-    int price;
+    int amount;
     String note;
     String date;
     String id;
 
     public Data(){
 
-
     }
 
-    public Data(String type, int price, String note, String date, String id) {
+    public Data(String type, int amount, String note, String date, String id) {
         this.type = type;
-        this.price = price;
+        this.amount = amount;
         this.note = note;
         this.date = date;
         this.id = id;
@@ -30,11 +29,11 @@ public class Data {
     }
 
     public int getPrice() {
-        return price;
+        return amount;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setPrice(int amount) {
+        this.amount = amount;
     }
 
     public String getNote() {
