@@ -1,5 +1,6 @@
 package com.example.shoppinglist;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,8 +22,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -38,6 +42,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
+    private TextView totalResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +52,8 @@ public class HomeActivity extends AppCompatActivity {
 //        toolbar = findViewById(R.id.home_toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setTitle("MY SUPER SHOPPING LIST");
+
+        totalResult = findViewById(R.id.total_amount);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
@@ -62,6 +70,31 @@ public class HomeActivity extends AppCompatActivity {
         layoutManager.setReverseLayout(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
+
+//        Calculate the total amount of the all items
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int totalAmmount = 0;
+
+                for (DataSnapshot snap:dataSnapshot.getChildren()){
+
+                    Data data = snap.getValue(Data.class);
+
+                    totalAmmount += data.getPrice();
+
+                    String totalPrice = String.valueOf(totalAmmount + ".00");
+
+                    totalResult.setText(totalPrice);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         fab_btn = findViewById(R.id.fab);
 
