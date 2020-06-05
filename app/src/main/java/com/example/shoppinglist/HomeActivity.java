@@ -45,6 +45,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private TextView totalResult;
 
+    private String type;
+    private  int amount;
+    private String note;
+    private String post_key;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,7 +179,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     ) {
                 @Override
-                protected void populateViewHolder(MyViewHolder viewHolder, Data model, int position) {
+                protected void populateViewHolder(MyViewHolder viewHolder, final Data model, final int position) {
                     viewHolder.setDate(model.getDate());
                     viewHolder.setType(model.getType());
                     viewHolder.setNote(model.getNote());
@@ -183,6 +188,12 @@ public class HomeActivity extends AppCompatActivity {
                     viewHolder.myview.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
+                            post_key = getRef(position).getKey();
+                            type = model.getType();
+                            note = model.getNote();
+                            amount = model.getPrice();
+
                             updateData();
                         }
                     });
@@ -236,6 +247,41 @@ public class HomeActivity extends AppCompatActivity {
             AlertDialog dialog = mydialog.create();
 
             dialog.setView((myView));
+
+            final EditText edt_Type = myView.findViewById(R.id.item_type_update);
+            final EditText edt_Ammount = myView.findViewById(R.id.item_amount_update);
+            final EditText edt_Note = myView.findViewById(R.id.item_note_update);
+
+            edt_Type.setText(type);
+            edt_Type.setSelection(type.length());
+
+            edt_Ammount.setText(String.valueOf(amount));
+            edt_Ammount.setSelection(String.valueOf(amount).length());
+
+            edt_Note.setText(note);
+            edt_Note.setSelection(note.length());
+
+            Button updateButton = myView.findViewById(R.id.button_update);
+            Button deleteButton = myView.findViewById(R.id.button_delete);
+
+
+//            For update button
+            updateButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String myType = edt_Type.getText().toString().trim();
+                    String myAmmount = edt_Ammount.getText().toString().trim();
+                    String myNote = edt_Note.getText().toString().trim();
+                }
+            });
+
+//            For delete button
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
 
             dialog.show();
 
