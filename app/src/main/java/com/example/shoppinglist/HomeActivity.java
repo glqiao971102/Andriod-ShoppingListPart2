@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -178,6 +179,13 @@ public class HomeActivity extends AppCompatActivity {
                     viewHolder.setType(model.getType());
                     viewHolder.setNote(model.getNote());
                     viewHolder.setAmmount(model.getPrice());
+
+                    viewHolder.myview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            updateData();
+                        }
+                    });
                 }
             };
 
@@ -217,7 +225,21 @@ public class HomeActivity extends AppCompatActivity {
         }
 
 
+        public void updateData(){
 
+            AlertDialog.Builder mydialog = new AlertDialog.Builder(HomeActivity.this);
+
+            LayoutInflater inflater = LayoutInflater.from(HomeActivity.this);
+
+            View myView = inflater.inflate(R.layout.update_item, null);
+
+            AlertDialog dialog = mydialog.create();
+
+            dialog.setView((myView));
+
+            dialog.show();
+
+        }
 
 
 
