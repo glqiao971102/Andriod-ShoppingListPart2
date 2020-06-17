@@ -7,14 +7,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.text.Layout;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,8 +55,14 @@ public class HomeActivity extends AppCompatActivity {
     private String note;
     private String post_key;
 
+    private SensorManager sensorManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+//        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+//        sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) , SensorManager.SENSOR_DELAY_NORMAL);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -112,6 +123,18 @@ public class HomeActivity extends AppCompatActivity {
         });
 
     }
+
+//        private final SensorEventListener sensorListener = new SensorEventListener() {
+//            @Override
+//            public void onSensorChanged(SensorEvent sensorEvent) {
+//
+//            }
+//
+//            @Override
+//            public void onAccuracyChanged(Sensor sensor, int i) {
+//
+//            }
+//        }
 
         private void customDialog(){
 
@@ -248,6 +271,8 @@ public class HomeActivity extends AppCompatActivity {
 
             dialog.setView((myView));
 
+
+
             final EditText edt_Type = myView.findViewById(R.id.item_type_update);
             final EditText edt_Ammount = myView.findViewById(R.id.item_amount_update);
             final EditText edt_Note = myView.findViewById(R.id.item_note_update);
@@ -263,6 +288,8 @@ public class HomeActivity extends AppCompatActivity {
 
             Button updateButton = myView.findViewById(R.id.button_update);
             Button deleteButton = myView.findViewById(R.id.button_delete);
+
+
 
 
 //            For update button, update it to the firebase database
@@ -304,10 +331,10 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
 
+
             dialog.show();
 
         }
-
 
 
 
